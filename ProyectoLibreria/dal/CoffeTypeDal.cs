@@ -13,9 +13,14 @@ namespace ProyectoLibreria.dal
         {
             using(var grupo=new Model1())
             {
-                return grupo.CoffeeType
+                var types=grupo.CoffeeType
                     .OrderBy( ct => ct.Name)
                     .ToList();
+                CoffeeType vacio =new CoffeeType();
+                vacio.CoffeeTypeId=0;
+                vacio.Name="--Seleccione un Tipo--";
+                types.Insert(0,vacio); // inserto al comienzo
+                return types;
             }
         }
     }

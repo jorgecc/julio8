@@ -43,7 +43,7 @@ namespace WebForm
                     DropDownList1.DataSource = CoffeTypeDal.ListarTodo();
                     DropDownList1.DataBind();
                     
-                    DropDownList1.SelectedValue=filtro.ToString(); // <-- mannt
+                    DropDownList1.SelectedValue=filtro.ToString(); // <-
                     
                     // cargar la grilla usando ese filtro
                     if (filtro==0) { 
