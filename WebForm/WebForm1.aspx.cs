@@ -41,7 +41,9 @@ namespace WebForm
 
                     // cargar el combobox
                     DropDownList1.DataSource = CoffeTypeDal.ListarTodo();
-                    DropDownList1.DataBind(); 
+                    DropDownList1.DataBind();
+                    DropDownList1.SelectedValue=filtro.ToString();
+
                     // cargar la grilla usando ese filtro
                     if (filtro==0) { 
                         GridView1.DataSource = CoffeeDal.ListarTodo(pag);
