@@ -58,7 +58,9 @@
     <Compile Include="db\Coffee.cs" />
     <Compile Include="db\CoffeeType.cs" />
     <Compile Include="db\Model1.cs" />
+    <Compile Include="modelo\Pagina.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="servicio\PaginaServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
