@@ -14,7 +14,7 @@ namespace ProyectoLibreria.servicio
         {
             int paginaInicial=pagActual-3;
             int paginaFinal=pagActual+3;
-            if (paginaInicial<0)
+            if (paginaInicial<=0)
             {
                 paginaInicial=1;
             }
@@ -24,7 +24,7 @@ namespace ProyectoLibreria.servicio
             }
 
             var r=new List<Pagina>();
-            for(int i= paginaInicial; i< paginaFinal; i++)
+            for(int i= paginaInicial; i<= paginaFinal; i++)
             {
                 r.Add(new Pagina(i,pagina+"?pag="+i+"&filtro="+filtro));
             }
