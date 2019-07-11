@@ -14,7 +14,9 @@ namespace WebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack==false) { 
+            try { 
+             
+                if (IsPostBack==false) { 
                 string pagT = Request.QueryString["pag"];
                 string filtroT = Request.QueryString["filtro"];
 
@@ -31,7 +33,8 @@ namespace WebForm
                             , CoffeeDal.NumPagina(0),0,"WebForm1.aspx");
                     Repeater1.DataSource = paginas;
                     Repeater1.DataBind();
-                } else
+                } 
+                else
                 {
                     // convertir la pagina y filtro en numero
                     int pag=Convert.ToInt32(pagT);
@@ -74,12 +77,13 @@ namespace WebForm
                 // 3) Generar la paginacion usando ese tipo de cafe
                 var paginas = PaginaServicio.CrearPagina(1
                     , CoffeeDal.NumPagina(tipoCafe), tipoCafe, "WebForm1.aspx");
-               
 
                 Repeater1.DataSource = paginas;
                 Repeater1.DataBind();
-
-
+            }
+            } catch(Exception ex)
+            {
+                Panel1.Visible=true;
             }
         } // fin page_load
     }

@@ -16,6 +16,8 @@ namespace ProyectoLibreria.dal
             using(var grupo=new Model1() )
             {
                 return grupo.Coffee
+                    .Include("Brand") // esto son left join
+                    .Include("CoffeeType") // esto son left join
                     .OrderBy( c => c.Title )
                     .Skip((pagina-1)*TAMPAGINA) // PAGINA 1 = (1-1)*20 = 0 
                     .Take(TAMPAGINA) 
@@ -28,6 +30,8 @@ namespace ProyectoLibreria.dal
             using (var grupo = new Model1())
             {
                 return grupo.Coffee
+                    .Include("Brand") // esto son left join
+                    .Include("CoffeeType") // esto son left join
                     .Where( c =>c.TypeId==tipo )
                     .OrderBy(c => c.Title)
                     .Skip((pagina - 1) * TAMPAGINA) // PAGINA 1 = (1-1)*20 = 0 
