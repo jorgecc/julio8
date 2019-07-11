@@ -24,11 +24,18 @@ namespace ProyectoLibreria.servicio
             }
 
             var r=new List<Pagina>();
+            if (pagActual!=1) { 
+                r.Add(new Pagina("PREV", pagina + "?pag=" + 
+                                (pagActual-1) + "&filtro=" + filtro));
+            }
             for(int i= paginaInicial; i<= paginaFinal; i++)
             {
-                r.Add(new Pagina(i,pagina+"?pag="+i+"&filtro="+filtro));
+                r.Add(new Pagina(i.ToString(),pagina+"?pag="+i+"&filtro="+filtro));
             }
-
+            if (pagActual!= maxPagina) { 
+                r.Add(new Pagina("NEXT", pagina + "?pag=" +
+                    (pagActual + 1) + "&filtro=" + filtro));
+            }
             return r;
         }
     }
