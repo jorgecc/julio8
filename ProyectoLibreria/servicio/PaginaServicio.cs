@@ -10,7 +10,7 @@ namespace ProyectoLibreria.servicio
     public class PaginaServicio
     {
         public static List<Pagina> CrearPagina(int pagActual,int maxPagina
-                ,int filtro,string pagina)
+                ,int filtro,string nombre,string pagina)
         {
             int paginaInicial=pagActual-3;
             int paginaFinal=pagActual+3;
@@ -26,11 +26,14 @@ namespace ProyectoLibreria.servicio
             var r=new List<Pagina>();
             if (pagActual!=1) { 
                 r.Add(new Pagina("PREV", pagina + "?pag=" + 
-                                (pagActual-1) + "&filtro=" + filtro));
+                                (pagActual-1) + "&filtro=" + filtro
+                                ));
             }
             for(int i= paginaInicial; i<= paginaFinal; i++)
             {
-                r.Add(new Pagina(i.ToString(),pagina+"?pag="+i+"&filtro="+filtro));
+                r.Add(new Pagina(i.ToString(),pagina+"?pag="+i
+                    +"&filtro="+filtro
+                    + "&nombre=" + nombre));
             }
             if (pagActual!= maxPagina) { 
                 r.Add(new Pagina("NEXT", pagina + "?pag=" +

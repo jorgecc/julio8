@@ -25,7 +25,7 @@ namespace ProyectoLibreria.dal
             }
         }
 
-        public static List<Coffee> ListarPorTipo(int tipo,int pagina)
+        public static List<Coffee> ListarPorTipo(int tipo,string nombre,int pagina)
         {
             using (var grupo = new Model1())
             {
@@ -33,6 +33,7 @@ namespace ProyectoLibreria.dal
                     .Include("Brand") // esto son left join
                     .Include("CoffeeType") // esto son left join
                     .Where( c =>c.TypeId==tipo )
+                    .Where(c=>c.Title.Contains(nombre)) // title like '%nombre%'
                     .OrderBy(c => c.Title)
                     .Skip((pagina - 1) * TAMPAGINA) // PAGINA 1 = (1-1)*20 = 0 
                     .Take(TAMPAGINA)

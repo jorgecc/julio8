@@ -17,12 +17,13 @@ namespace WebForm
             try { 
              
                 if (IsPostBack==false) { 
-                string pagT = Request.QueryString["pag"];
-                string filtroT = Request.QueryString["filtro"];
+                    string pagT = Request.QueryString["pag"];
+                    string filtroT = Request.QueryString["filtro"];
+                    string nombreT = Request.QueryString["nombre"];
 
                 if (pagT==null || pagT=="")
                 {
-                    // cuando se carga la pagina por primera vez
+                    // Webform1.aspx
                     DropDownList1.DataSource = CoffeTypeDal.ListarTodo();
                     DropDownList1.DataBind();
 
@@ -30,15 +31,16 @@ namespace WebForm
                     GridView1.DataBind();
 
                     var paginas = PaginaServicio.CrearPagina(1
-                            , CoffeeDal.NumPagina(0),0,"WebForm1.aspx");
+                            , CoffeeDal.NumPagina(0),0,nombreT,"WebForm1.aspx");
                     Repeater1.DataSource = paginas;
                     Repeater1.DataBind();
                 } 
                 else
                 {
-                    // convertir la pagina y filtro en numero
+                    // Webform1?pag=??.... (click en un vinculo)
                     int pag=Convert.ToInt32(pagT);
                     int filtro=Convert.ToInt32(filtroT);
+
 
                     // cargar el combobox
                     DropDownList1.DataSource = CoffeTypeDal.ListarTodo();
@@ -51,12 +53,12 @@ namespace WebForm
                         GridView1.DataSource = CoffeeDal.ListarTodo(pag);
                     } else
                     {
-                        GridView1.DataSource = CoffeeDal.ListarPorTipo(filtro, pag);
+                        GridView1.DataSource = CoffeeDal.ListarPorTipo(filtro,nombreT, pag);
                     }
                     GridView1.DataBind();
                     // cargar la paginacion usando ese filtro
                     var paginas = PaginaServicio.CrearPagina(pag
-                        , CoffeeDal.NumPagina(filtro), filtro, "WebForm1.aspx");
+                        , CoffeeDal.NumPagina(filtro), filtro,nombreT, "WebForm1.aspx");
                   
                     Repeater1.DataSource = paginas;
                     Repeater1.DataBind();
@@ -72,11 +74,11 @@ namespace WebForm
                 // 1) Leer el tipo de cafe
                 int tipoCafe=Convert.ToInt32(DropDownList1.SelectedItem.Value);
                 // 2) Listar la grilla usando ese tipo de cafe
-                GridView1.DataSource = CoffeeDal.ListarPorTipo(tipoCafe,1);
+                GridView1.DataSource = CoffeeDal.ListarPorTipo(tipoCafe, TextBox2.Text, 1);
                 GridView1.DataBind();
                 // 3) Generar la paginacion usando ese tipo de cafe
                 var paginas = PaginaServicio.CrearPagina(1
-                    , CoffeeDal.NumPagina(tipoCafe), tipoCafe, "WebForm1.aspx");
+                    , CoffeeDal.NumPagina(tipoCafe), tipoCafe,TextBox2.Text, "WebForm1.aspx");
 
                 Repeater1.DataSource = paginas;
                 Repeater1.DataBind();
