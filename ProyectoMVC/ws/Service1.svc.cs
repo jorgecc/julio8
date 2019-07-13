@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoLibreria.dal;
+using ProyectoLibreria.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +15,11 @@ namespace ProyectoMVC.ws
     {
         public void DoWork()
         {
+        }
+
+        public List<Coffee> ListarTodo()
+        {
+            return CoffeeDal.ListarTodo(1);
         }
     }
 }

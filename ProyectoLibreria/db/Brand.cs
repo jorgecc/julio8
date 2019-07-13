@@ -5,6 +5,7 @@ namespace ProyectoLibreria.db
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Runtime.Serialization;
 
     [Table("Brand")]
     public partial class Brand
@@ -22,6 +23,7 @@ namespace ProyectoLibreria.db
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [IgnoreDataMember]
         public virtual ICollection<Coffee> Coffee { get; set; }
     }
 }
