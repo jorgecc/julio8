@@ -15,6 +15,7 @@ namespace ProyectoLibreria.dal
         {
             using(var grupo=new Model1() )
             {
+                grupo.Configuration.ProxyCreationEnabled=false; 
                 return grupo.Coffee
                     .Include("Brand") // esto son left join
                     .Include("CoffeeType") // esto son left join

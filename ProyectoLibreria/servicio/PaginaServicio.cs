@@ -13,6 +13,7 @@ namespace ProyectoLibreria.servicio
                 ,int filtro,string nombre,string pagina)
         {
             int paginaInicial=pagActual-3;
+       
             int paginaFinal=pagActual+3;
             if (paginaInicial<=0)
             {
